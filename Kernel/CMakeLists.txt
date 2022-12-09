@@ -11,3 +11,6 @@ target_compile_options(Kernel PRIVATE -ffreestanding -O2 -Wall -Wextra -fno-exce
 target_link_options(Kernel PRIVATE -ffreestanding -O2 -nostdlib)
 target_link_options(Kernel PRIVATE LINKER:-T ${CMAKE_CURRENT_SOURCE_DIR}/Linker.ld)
 install(TARGETS Kernel DESTINATION boot)
+
+nashios_install_sources()
+nashios_install_headers(Kernel)
