@@ -1,0 +1,36 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "linux-base",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/Binary/Build/${presetName}",
+            "installDir": "${sourceDir}/Binary/Install/${presetName}",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            }
+        },
+        {
+            "name": "i686",
+            "displayName": "i686",
+            "inherits": "linux-base",
+            "architecture": {
+                "value": "x86",
+                "strategy": "external"
+            },
+            "cacheVariables": {
+                "NASHIOS_PROCESSOR": "x86",
+                "NASHIOS_ARCHITECTURE": "i686"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "i686",
+            "configurePreset": "i686"
+        }
+    ]
+}
