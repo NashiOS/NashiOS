@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.22)
 project(NashiOS)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 set(CMAKE_SYSTEM_NAME NashiOS)
 set(CMAKE_SYSTEM_PROCESSOR ${NASHIOS_PROCESSOR})
 
