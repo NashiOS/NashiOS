@@ -12,7 +12,7 @@ jobs:
         arch: [ i686 ]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install dependencies
         run: |
@@ -23,7 +23,7 @@ jobs:
         run: cmake --preset ${{ matrix.arch }}
 
       - name: Toolchain cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ github.workspace }}/Binary/Toolchain/Cache/GithubActionsToolchain.tar.xz
           key: ${{ runner.os }}-toolchain-${{ matrix.arch }}-${{ hashFiles('Scripts/SetupToolchain.sh') }}
