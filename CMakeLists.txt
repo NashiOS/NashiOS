@@ -31,3 +31,5 @@ set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
 add_custom_target(toolchain
         COMMAND "TARGET=${TOOLCHAIN_TARGET}" "SOURCE_DIR=${CMAKE_SOURCE_DIR}" ${CMAKE_SOURCE_DIR}/Scripts/SetupToolchain.sh
         USES_TERMINAL)
+
+add_subdirectory(Kernel)
