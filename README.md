@@ -1,6 +1,8 @@
 # NashiOS
 Unix-like operating system.
 
+[![Build](https://github.com/NashiOS/NashiOS/actions/workflows/cmake.yml/badge.svg)](https://github.com/NashiOS/NashiOS/actions/workflows/cmake.yml)
+
 ## About
 
 NashiOS is a hobby operating system with a Unix-like core, initially designed for the x86 architecture, but with future
