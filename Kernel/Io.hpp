@@ -31,12 +31,12 @@ namespace Kernel
 
         static inline void outw(St::Types::uint16 port, St::Types::uint16 value)
         {
-            asm volatile("outb %0, %1" : : "a"(value), "Nd"(port));
+            asm volatile("outw %0, %1" : : "a"(value), "Nd"(port));
         }
 
         static inline void outl(St::Types::uint16 port, St::Types::uint32 value)
         {
-            asm volatile("outb %0, %1" : : "a"(value), "Nd"(port));
+            asm volatile("outl %0, %1" : : "a"(value), "Nd"(port));
         }
 
         static inline auto inb(St::Types::uint16 port)
@@ -49,14 +49,14 @@ namespace Kernel
         static inline auto inw(St::Types::uint16 port)
         {
             St::Types::uint16 result;
-            asm volatile("inb %1, %0" : "=a"(result) : "Nd"(port));
+            asm volatile("inw %1, %0" : "=a"(result) : "Nd"(port));
             return result;
         }
 
         static inline auto inl(St::Types::uint16 port)
         {
             St::Types::uint32 result;
-            asm volatile("inb %1, %0" : "=a"(result) : "Nd"(port));
+            asm volatile("inl %1, %0" : "=a"(result) : "Nd"(port));
             return result;
         }
     };
