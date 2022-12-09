@@ -15,15 +15,26 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#include <Kernel/Serial.hpp>
+#pragma once
+
+#include <St/Types.hpp>
 
 namespace Kernel
 {
-    extern "C" void kernel_main()
+    class Serial
     {
-        Serial::init(Serial::com1);
+    public:
+        enum Port : St::Types::uint16
+        {
+            invalid,
+            com1 = 0x3F8
+        };
 
-        while (true)
-            ;
-    }
+        static void init(Port port);
+        static void write(char ch);
+        static void write(const char *characters, St::Types::size length);
+
+    private:
+        static Port m_port;
+    };
 } // namespace Kernel

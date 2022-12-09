@@ -2,7 +2,8 @@ set(ASM_SOURCES
         Boot.S)
 
 set(CXX_SOURCES
-        Main.cpp)
+        Main.cpp
+        Serial.cpp)
 
 add_executable(Kernel ${ASM_SOURCES} ${CXX_SOURCES})
 target_link_libraries(Kernel PRIVATE gcc)
