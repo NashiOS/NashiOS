@@ -15,6 +15,24 @@ MIRROR=http://ftp.gnu.org/gnu
 PREFIX=$CROSS_DIR
 CORES=$(nproc)
 
+if [ "$USE_CACHED" = "true" ] ; then
+    CACHE_FILE=$CACHE_DIR/GithubActionsToolchain.tar.xz
+    if [ -r "$CACHE_FILE" ] ; then
+        echo "Toolchain cache $CACHE_FILE exists"
+        echo "Extracting cache"
+        if tar -xf "$CACHE_FILE" -C "$TOOLS_DIR" ; then
+            echo "Successfully extracted cache"
+            exit 0
+        else
+            echo "Cache extraction failed, most likely the cache is broken and should be removed"
+            rm -f "$CACHE_FILE"
+        fi
+    else
+        echo "Cache file $CACHE_FILE does not exist"
+    fi
+    echo "Starting the toolchain building process"
+fi
+
 mkdir -p "$CACHE_DIR"
 cd "$CACHE_DIR" || exit
 wget -nc $MIRROR/binutils/$BINUTILS_ARCHIVE
@@ -45,3 +63,9 @@ cd "$BUILD_DIR/BuildGcc" || exit
 ../$GCC_PACKAGE/configure --target="$TARGET" --prefix="$PREFIX" --disable-nls --enable-languages=c,c++ --without-headers
 make -j "$CORES" all-gcc all-target-libgcc
 make install-gcc install-target-libgcc
+
+if [ "$USE_CACHED" = "true" ] ; then
+    cd "$TOOLS_DIR" || exit
+    echo "Generating cache tar file"
+    tar -cf "$CACHE_FILE" Cross/
+fi

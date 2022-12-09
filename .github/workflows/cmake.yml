@@ -22,8 +22,14 @@ jobs:
       - name: Generate build
         run: cmake --preset ${{ matrix.arch }}
 
+      - name: Toolchain cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/Binary/Toolchain/Cache/GithubActionsToolchain.tar.xz
+          key: ${{ runner.os }}-toolchain-${{ matrix.arch }}-${{ hashFiles('Scripts/SetupToolchain.sh') }}
+
       - name: Build/Restore toolchain
-        run: cmake --build --preset ${{ matrix.arch }} --target toolchain
+        run: USE_CACHED=true cmake --build --preset ${{ matrix.arch }} --target toolchain
 
       - name: Build system
         run: cmake --build --preset ${{ matrix.arch }} --target all
