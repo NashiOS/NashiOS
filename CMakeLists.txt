@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(NashiOS)
+project(NashiOS ASM CXX)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
